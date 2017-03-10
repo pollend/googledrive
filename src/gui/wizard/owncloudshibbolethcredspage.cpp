@@ -84,7 +84,7 @@ void OwncloudShibbolethCredsPage::initializePage()
 
 int OwncloudShibbolethCredsPage::nextId() const
 {
-  return WizardCommon::Page_AdvancedSetup;
+  return WizardCommon::Page_Result;
 }
 
 void OwncloudShibbolethCredsPage::setConnected()

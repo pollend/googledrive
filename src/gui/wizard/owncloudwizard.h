@@ -24,16 +24,11 @@
 #include "accountfwd.h"
 
 namespace OCC {
-
-class OwncloudSetupPage;
-class OwncloudHttpCredsPage;
-#ifndef NO_SHIBBOLETH
-class OwncloudShibbolethCredsPage;
-#endif
-class OwncloudAdvancedSetupPage;
-class OwncloudWizardResultPage;
+class GoogleOauth2Page;
 class AbstractCredentials;
 class AbstractCredentialsWizardPage;
+class OwncloudWizardResultPage;
+class OwncloudAdvancedSetupPage;
 
 /**
  * @brief The OwncloudWizard class
@@ -90,14 +85,11 @@ signals:
 
 private:
     AccountPtr _account;
-    OwncloudSetupPage* _setupPage;
-    OwncloudHttpCredsPage* _httpCredsPage;
-#ifndef NO_SHIBBOLETH
-    OwncloudShibbolethCredsPage* _shibbolethCredsPage;
-#endif
-    OwncloudAdvancedSetupPage* _advancedSetupPage;
+    GoogleOauth2Page* _oauthPage;
     OwncloudWizardResultPage* _resultPage;
     AbstractCredentialsWizardPage* _credentialsPage;
+    OwncloudAdvancedSetupPage* _advanceSetupPage;
+
 
     QStringList _setupLog;
 };

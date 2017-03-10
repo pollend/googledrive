@@ -38,6 +38,7 @@ set(client_UI
     wizard/owncloudhttpcredspage.ui
     wizard/owncloudsetupnocredspage.ui
     wizard/owncloudwizardresultpage.ui
+    wizard/googleoauth2page.ui
 )
 
 qt_wrap_ui(client_UI_SRCS ${client_UI})
@@ -103,6 +104,7 @@ set(client_SRCS
     wizard/owncloudwizardcommon.cpp
     wizard/owncloudwizard.cpp
     wizard/owncloudwizardresultpage.cpp
+    wizard/googleoauth2page.cpp
     ../3rdparty/qjson/json.cpp
 )
 

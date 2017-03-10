@@ -109,7 +109,7 @@ void OwncloudSetupWizard::startWizard()
 
     _ocWizard->setRemoteFolder(_remoteFolder);
 
-    _ocWizard->setStartId(WizardCommon::Page_ServerSetup);
+    _ocWizard->setStartId(WizardCommon::Page_Oauth2);
 
     _ocWizard->restart();
 
@@ -332,10 +332,10 @@ void OwncloudSetupWizard::slotAuthError()
     }
 
     _ocWizard->show();
-    if (_ocWizard->currentId() == WizardCommon::Page_ShibbolethCreds) {
+    /*if (_ocWizard->currentId() == WizardCommon::Page_ShibbolethCreds) {
         _ocWizard->back();
     }
-    _ocWizard->displayError(errorMsg, _ocWizard->currentId() == WizardCommon::Page_ServerSetup && checkDowngradeAdvised(reply));
+    _ocWizard->displayError(errorMsg, _ocWizard->currentId() == WizardCommon::Page_ServerSetup && checkDowngradeAdvised(reply));*/
 }
 
 bool OwncloudSetupWizard::checkDowngradeAdvised(QNetworkReply* reply)

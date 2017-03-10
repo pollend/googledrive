@@ -26,6 +26,7 @@
 #include "networkjobs.h"
 
 #include "wizard/owncloudwizardcommon.h"
+#include "wizard/owncloudwizard.h"
 
 namespace OCC {
 

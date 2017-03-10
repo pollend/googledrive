@@ -41,10 +41,12 @@ enum SyncMode {
 };
 
 enum Pages {
-    Page_ServerSetup,
-    Page_HttpCreds,
-    Page_ShibbolethCreds,
+//    Page_ServerSetup,
+//    Page_HttpCreds,
+//    Page_ShibbolethCreds,
+//    Page_Result
     Page_AdvancedSetup,
+    Page_Oauth2,
     Page_Result
 };
 
