@@ -59,11 +59,6 @@ OwncloudWizard::OwncloudWizard(QWidget *parent)
     setWizardStyle( QWizard::ModernStyle );
 
     connect( this, SIGNAL(currentIdChanged(int)), SLOT(slotCurrentPageChanged(int)));
-//    connect( _setupPage, SIGNAL(determineAuthType(QString)), SIGNAL(determineAuthType(QString)));
-//    connect( _httpCredsPage, SIGNAL(connectToOCUrl(QString)), SIGNAL(connectToOCUrl(QString)));
-//#ifndef NO_SHIBBOLETH
-//    connect( _shibbolethCredsPage, SIGNAL(connectToOCUrl(QString)), SIGNAL(connectToOCUrl(QString)));
-//#endif
     connect( _advanceSetupPage, SIGNAL(createLocalAndRemoteFolders(QString, QString)),
              SIGNAL(createLocalAndRemoteFolders(QString, QString)));
     connect(this, SIGNAL(customButtonClicked(int)), this, SIGNAL(skipFolderConfiguration()));

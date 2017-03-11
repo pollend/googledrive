@@ -27,13 +27,12 @@ if( Qt5Core_FOUND )
            find_package(Qt5MacExtras REQUIRED)
         endif(APPLE)
 
-        if(NOT NO_SHIBBOLETH)
-            find_package(Qt5WebKitWidgets)
-            find_package(Qt5WebKit)
-            if(NOT Qt5WebKitWidgets_FOUND)
-                message(FATAL_ERROR "Qt5WebKit required for Shibboleth. Use -DNO_SHIBBOLETH=1 to disable it.")
-            endif()
+        find_package(Qt5WebKitWidgets)
+        find_package(Qt5WebKit)
+        if(NOT Qt5WebKitWidgets_FOUND)
+            message(FATAL_ERROR "Qt5WebKit required ")
         endif()
+
     endif()
 
 else( Qt5Core_FOUND )

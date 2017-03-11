@@ -2,6 +2,7 @@
 if(NOT TOKEN_AUTH_ONLY)
 endif()
 
+
 set(synclib_NAME ${APPLICATION_EXECUTABLE}sync)
 
 include(QtVersionAbstraction)
@@ -21,6 +22,7 @@ endif()
 if (APPLE)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++")
 endif()
+
 
 if(NOT TOKEN_AUTH_ONLY)
     if (Qt5Core_DIR)

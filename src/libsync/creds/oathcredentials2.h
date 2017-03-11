@@ -32,7 +32,8 @@ namespace OCC {
         Oauth2Credentials(const QString& oauthToken, const QSslCertificate& certificate = QSslCertificate(), const QSslKey& key = QSslKey());
     private Q_SLOTS:
   //      void slotAuthentication(QNetworkReply*, QAuthenticator*);
-
+     //   void slotWriteClientCertPEMJobDone(QKeychain::Job*);
+     //   void slotWriteClientKeyPEMJobDone(QKeychain::Job*);
     protected:
         QString _oauth;
 

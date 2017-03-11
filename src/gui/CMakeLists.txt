@@ -3,6 +3,7 @@ set(CMAKE_AUTOMOC TRUE)
 
 add_subdirectory(updater)
 
+
 #TODO Move resources files
 qt_add_resources(MIRALL_RC_SRC ../../client.qrc)
 if ( IS_DIRECTORY ${OEM_THEME_DIR} )
@@ -147,6 +148,7 @@ IF( APPLE )
 list(APPEND client_SRCS folderwatcher_mac.cpp)
 ENDIF()
 
+
 set(3rdparty_SRC
     ../3rdparty/QProgressIndicator/QProgressIndicator.cpp
     ../3rdparty/qtlockedfile/qtlockedfile.cpp
@@ -154,6 +156,7 @@ set(3rdparty_SRC
     ../3rdparty/qtsingleapplication/qtsingleapplication.cpp
     ../3rdparty/qtsingleapplication/qtsinglecoreapplication.cpp
    )
+
 
 if (APPLE)
     list(APPEND 3rdparty_SRC
@@ -169,16 +172,44 @@ else()
    list(APPEND 3rdparty_SRC ../3rdparty/qtlockedfile/qtlockedfile_win.cpp )
 endif()
 
+
+
+
 set(3rdparty_INC
     ${CMAKE_SOURCE_DIR}/src/3rdparty/qjson
     ${CMAKE_SOURCE_DIR}/src/3rdparty/QProgressIndicator
     ${CMAKE_SOURCE_DIR}/src/3rdparty/qtlockedfile
     ${CMAKE_SOURCE_DIR}/src/3rdparty/qtmacgoodies/src
     ${CMAKE_SOURCE_DIR}/src/3rdparty/qtsingleapplication
+    ${CMAKE_SOURCE_DIR}/src/3rdparty/o2/src
     )
 
 include_directories(${3rdparty_INC})
 include_directories(${OPENSSL_INCLUDE_DIR})
+
+
+add_library( o2
+        ${CMAKE_SOURCE_DIR}/src/3rdparty/o2/src/o2.h
+        ${CMAKE_SOURCE_DIR}/src/3rdparty/o2/src/o2reply.h
+        ${CMAKE_SOURCE_DIR}/src/3rdparty/o2/src/o2replyserver.h
+        ${CMAKE_SOURCE_DIR}/src/3rdparty/o2/src/o2requestor.h
+        ${CMAKE_SOURCE_DIR}/src/3rdparty/o2/src/o0abstractstore.h
+        ${CMAKE_SOURCE_DIR}/src/3rdparty/o2/src/o0baseauth.h
+        ${CMAKE_SOURCE_DIR}/src/3rdparty/o2/src/o0globals.h
+        ${CMAKE_SOURCE_DIR}/src/3rdparty/o2/src/o0requestparameter.h
+        ${CMAKE_SOURCE_DIR}/src/3rdparty/o2/src/o0settingsstore.h
+        ${CMAKE_SOURCE_DIR}/src/3rdparty/o2/src/o0simplecrypt.h
+        ${CMAKE_SOURCE_DIR}/src/3rdparty/o2/src/o2gft.h
+        ${CMAKE_SOURCE_DIR}/src/3rdparty/o2/src/o2.cpp
+        ${CMAKE_SOURCE_DIR}/src/3rdparty/o2/src/o2reply.cpp
+        ${CMAKE_SOURCE_DIR}/src/3rdparty/o2/src/o2replyserver.cpp
+        ${CMAKE_SOURCE_DIR}/src/3rdparty/o2/src/o2requestor.cpp
+        ${CMAKE_SOURCE_DIR}/src/3rdparty/o2/src/o2simplecrypt.cpp
+        ${CMAKE_SOURCE_DIR}/src/3rdparty/o2/src/o0settingsstore.cpp
+        ${CMAKE_SOURCE_DIR}/src/3rdparty/o2/src/o0baseauth.cpp
+        ${CMAKE_SOURCE_DIR}/src/3rdparty/o2/src/o2gft.cpp)
+target_link_libraries( o2 Qt5::Core Qt5::Network)
+
 
 # csync is required.
 include_directories(${CMAKE_SOURCE_DIR}/csync/src
@@ -301,6 +332,8 @@ target_link_libraries( ${APPLICATION_EXECUTABLE} ${QT_LIBRARIES} )
 target_link_libraries( ${APPLICATION_EXECUTABLE} ${synclib_NAME} )
 target_link_libraries( ${APPLICATION_EXECUTABLE} updater )
 target_link_libraries( ${APPLICATION_EXECUTABLE} ${OS_SPECIFIC_LINK_LIBRARIES} )
+target_link_libraries( ${APPLICATION_EXECUTABLE} o2)
+
 
 if(WITH_CRASHREPORTER)
     target_link_libraries( ${APPLICATION_EXECUTABLE} crashreporter-handler)

@@ -195,6 +195,8 @@ endif( WIN32 )
 file( GLOB TRANS_FILES ${CMAKE_SOURCE_DIR}/translations/client_*.ts)
 set(TRANSLATIONS ${TRANS_FILES})
 
+
+
 add_subdirectory(csync)
 add_subdirectory(src)
 if(NOT BUILD_LIBRARIES_ONLY)
