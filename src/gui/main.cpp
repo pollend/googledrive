@@ -43,6 +43,9 @@ void warnSystray()
                           .arg(Theme::instance()->appNameGUI()));
 }
 
+
+
+
 int main(int argc, char **argv)
 {
     Q_INIT_RESOURCE(client);
@@ -66,6 +69,7 @@ int main(int argc, char **argv)
 #ifdef Q_OS_MAC
     Mac::CocoaInitializer cocoaInit; // RIIA
 #endif
+
     OCC::Application app(argc, argv);
 
 #ifdef Q_OS_WIN

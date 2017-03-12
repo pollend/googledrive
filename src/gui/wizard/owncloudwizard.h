@@ -69,6 +69,7 @@ public:
 public slots:
     void setAuthType(WizardCommon::AuthType type);
     void setRemoteFolder( const QString& );
+   // void setOauth2(const QString&,const QString&,int);
     void appendToConfigurationLog( const QString& msg, LogType type = LogParagraph );
     void slotCurrentPageChanged( int );
     void successfulStep();
@@ -82,6 +83,8 @@ signals:
     void basicSetupFinished( int );
     void skipFolderConfiguration();
     void needCertificate();
+    void registerOauth2(const QString&,const QString&,int);
+
 
 private:
     AccountPtr _account;

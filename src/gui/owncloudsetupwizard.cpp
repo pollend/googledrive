@@ -36,6 +36,7 @@
 #include "creds/credentialsfactory.h"
 #include "creds/abstractcredentials.h"
 #include "creds/dummycredentials.h"
+#include "creds/oathcredentials2.h"
 
 namespace OCC {
 
@@ -44,6 +45,9 @@ OwncloudSetupWizard::OwncloudSetupWizard(QObject* parent) :
     _ocWizard(new OwncloudWizard),
     _remoteFolder()
 {
+    connect(_ocWizard,SIGNAL(registerOauth2(const QString&,const QString&,int)),
+            this,SLOT(slotregisterOauth2(const QString&,const QString&,int)));
+
     connect( _ocWizard, SIGNAL(determineAuthType(const QString&)),
              this, SLOT(slotDetermineAuthType(const QString&)));
     connect( _ocWizard, SIGNAL(connectToOCUrl( const QString& ) ),
@@ -62,6 +66,15 @@ OwncloudSetupWizard::OwncloudSetupWizard(QObject* parent) :
 OwncloudSetupWizard::~OwncloudSetupWizard()
 {
     _ocWizard->deleteLater();
+}
+
+
+//TODO: https://developers.google.com/+/web/people/
+void OwncloudSetupWizard::slotregisterOauth2(const QString &accessToken, const QString &refreshToken, int expiresIn) {
+
+
+
+
 }
 
 void OwncloudSetupWizard::runWizard(QObject* obj, const char* amember, QWidget *parent)

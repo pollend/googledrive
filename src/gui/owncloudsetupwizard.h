@@ -82,6 +82,8 @@ private slots:
     void slotAssistantFinished( int );
     void slotSkipFolderConfiguration();
 
+    void slotregisterOauth2(const QString& accessToken ,const QString& refreshToken,int time);
+
 private:
     explicit OwncloudSetupWizard(QObject *parent = 0 );
     ~OwncloudSetupWizard();

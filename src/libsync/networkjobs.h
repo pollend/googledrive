@@ -233,7 +233,35 @@ private slots:
     virtual bool finished() Q_DECL_OVERRIDE;
 };
 
+
+
+//https://developers.google.com/+/web/people/
 /**
+ * @brief The Reqeust Oauth2 token against google API
+ *
+ * https://developers.google.com/identity/protocols/OAuth2UserAgent
+ */
+class OWNCLOUDSYNC_EXPORT RequestOauthJsonJob : public AbstractNetworkJob {
+Q_OBJECT
+public:
+    explicit RequestOauthJsonJob(AccountPtr account, const QString &token, const QString &path, QObject *parent = 0);
+    void start() Q_DECL_OVERRIDE;
+    void addQueryParams(QList<QPair<QString, QString> > params);
+signals:
+
+    void etagRetreived(const QString &etag);
+
+private slots:
+
+    virtual bool finished() Q_DECL_OVERRIDE;
+};
+
+
+
+
+
+
+    /**
  * @brief Job to check an API that return JSON
  *
  * Note! you need to be in the connected state before calling this because of a server bug:

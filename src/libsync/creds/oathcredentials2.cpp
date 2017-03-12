@@ -3,3 +3,9 @@
 //
 
 #include "oathcredentials2.h"
+namespace OCC{
+    Oauth2Credentials::Oauth2Credentials() {
+
+    }
+
+}

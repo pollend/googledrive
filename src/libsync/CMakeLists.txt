@@ -69,6 +69,8 @@ set(libsync_SRCS
     creds/dummycredentials.cpp
     creds/abstractcredentials.cpp
     creds/credentialscommon.cpp
+    creds/oathcredentials2.cpp
+    creds/o2replyserver.cpp
     ../3rdparty/qjson/json.cpp
 )
 

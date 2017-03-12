@@ -2,34 +2,44 @@
 #define GOOGLEOAUTH2PAGE_H
 
 #include <QWizardPage>
-
-#define  TOKEN_URL "https://accounts.google.com/o/oauth2/token"
-#define CLIENT_ID  "751940853221-eaa2qibr862tbd6nil5pef91dbusgrl8.apps.googleusercontent.comm"
-#define CLIENT_SECRETE "8zMh9iA-gP-7qXdQ-OnXrSA2"
+#include <QtWebKit/QtWebKit>
 
 #include "ui_googleoauth2page.h"
-#include "o2gft.h"
+#include "creds/o2replyserver.h"
+#include "creds/abstractcredentials.h"
 
 namespace OCC {
     class GoogleOauth2Page : public QWizardPage {
         Q_OBJECT
         public:
-            explicit GoogleOauth2Page(QWidget *parent = 0);
+            explicit GoogleOauth2Page();
 
             ~GoogleOauth2Page();
-        private slots:
-            void onLinkedChanged();
-            void onLinkingFailed();
-            void onLinkingSucceeded();
-            void onOpenBrowser(const QUrl *url);
-            void onCloseBrowser();
-        signals:
-            void oauthToken(const QString&);
 
-        private:
-            Ui_GoogleOauth2Page _ui;
-            O2Gft* _o2gft;
+    public:
+       // void setComplete(bool complete);
+        virtual int nextId() const Q_DECL_OVERRIDE;
+        virtual bool isComplete() const Q_DECL_OVERRIDE;
+    private slots:
+        void onVerificationReceived(QMap<QString, QString>);
+        void onTimeout();
+        void onTokenReplyError(QNetworkReply::NetworkError);
+        void onTokenReplyFinished();
+    signals:
+        void registerOauth2(const QString&,const QString&,int);
+        void returnFail();
 
+    private:
+        /// Build HTTP request body.
+        QByteArray buildRequestBody(const QMap<QString, QString> &parameters);
+
+
+        Ui_GoogleOauth2Page _ui;
+        O2ReplyServer * _replyServer;
+        QNetworkAccessManager *_manager;
+        QTimer* _timer;
+        QNetworkReply* _networkReply;
+        bool  _hasTokenBeenRegistered;
 
     };
 }

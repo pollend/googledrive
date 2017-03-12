@@ -41,9 +41,9 @@ namespace OCC
 OwncloudWizard::OwncloudWizard(QWidget *parent)
     : QWizard(parent),
       _account(0),
-      _oauthPage(new GoogleOauth2Page(this)),
+      _oauthPage(new GoogleOauth2Page),
       _resultPage(new OwncloudWizardResultPage),
-      _advanceSetupPage(new OwncloudAdvancedSetupPage()),
+      _advanceSetupPage(new OwncloudAdvancedSetupPage),
       _credentialsPage(0),
       _setupLog()
 {
@@ -61,6 +61,8 @@ OwncloudWizard::OwncloudWizard(QWidget *parent)
     connect( this, SIGNAL(currentIdChanged(int)), SLOT(slotCurrentPageChanged(int)));
     connect( _advanceSetupPage, SIGNAL(createLocalAndRemoteFolders(QString, QString)),
              SIGNAL(createLocalAndRemoteFolders(QString, QString)));
+    connect(_oauthPage,SIGNAL(registerOauth2),this,SIGNAL(registerOauth2));
+
     connect(this, SIGNAL(customButtonClicked(int)), this, SIGNAL(skipFolderConfiguration()));
 
 
@@ -166,11 +168,11 @@ void OwncloudWizard::slotCurrentPageChanged( int id )
         emit clearPendingRequests();
     }*/
 
-    if( id == WizardCommon::Page_Result ) {
+  /*  if( id == WizardCommon::Page_Result ) {
         disconnect(this, SIGNAL(finished(int)), this, SIGNAL(basicSetupFinished(int)));
         emit basicSetupFinished(QDialog::Accepted);
         appendToConfigurationLog( QString::null );
-    }
+    }*/
 
     setOption(QWizard::HaveCustomButton1, id == WizardCommon::Page_AdvancedSetup);
 }
